@@ -1,0 +1,16 @@
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\_DB.deps.json
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\_DB.dll
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\_DB.pdb
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.Extensions.Identity.Core.xml
+C:\Users\hp\source\repos\Reservation_API\DB\bin\Debug\netstandard2.0\Microsoft.Extensions.Identity.Stores.xml
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.csprojAssemblyReference.cache
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.csproj.CoreCompileInputs.cache
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.AssemblyInfoInputs.cache
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.AssemblyInfo.cs
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.csproj.CopyComplete
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.dll
+C:\Users\hp\source\repos\Reservation_API\DB\obj\Debug\netstandard2.0\_DB.pdb

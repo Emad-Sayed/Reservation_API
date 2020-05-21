@@ -1,0 +1,3 @@
+﻿Update-Database -Context AppDbContext -Project DB -StartupProject Reservation_API
+Add-Migration -Context AppDbContext -Project DB -StartupProject Reservation_API
+Drop-Database -Context AppDbContext -Project DB -StartupProject Reservation_API
