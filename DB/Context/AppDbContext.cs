@@ -1,4 +1,5 @@
-﻿using DB.Model.Auth;
+﻿using _DB.Model.Ticket;
+using DB.Model.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,14 @@ namespace DB.Context
                 RoleId = ROLE_ID,
                 UserId = ADMIN_ID
             });
+            builder.Entity<Ticket_State>().HasData(
+                new Ticket_State { Id = 1, STATE_NAME = "PENDING" },
+                new Ticket_State { Id = 2, STATE_NAME = "SERVING" },
+                new Ticket_State { Id = 3, STATE_NAME = "DONE" }
+                );
         }
+        public DbSet<Ticket_State> TICKET_STATES { get; set; }
+        public DbSet<Ticket> TICKETS { get; set; }
+        public DbSet<Ticket_Reserve> TICKET_RESERVES { get; set; }
     }
 }

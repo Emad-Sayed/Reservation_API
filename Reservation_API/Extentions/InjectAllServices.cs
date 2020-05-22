@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace Reservation_API.Extentions
             service.Inject_Identity();
             service.InjectAuth();
             service.Inject_CORS();
+            service.Inject_Swagger();
         }
         public static void Inject_DbContext(this IServiceCollection service)
         {
@@ -43,6 +45,13 @@ namespace Reservation_API.Extentions
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .SetIsOriginAllowed((host) => true));
+            });
+        }
+        public static void Inject_Swagger(this IServiceCollection service)
+        {
+            service.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
             });
         }
         public static void InjectAuth(this IServiceCollection service)

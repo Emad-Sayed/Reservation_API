@@ -20,6 +20,7 @@ namespace Reservation_API.Controllers.Ticket
         {
             _ticketContext = ticketContext;
         }
+        [HttpPost]
         public ActionResult SendMessage([FromBody]Message message)
         {
             _ticketContext.Clients.All.SendAsync("receiveMessage", message.body);

@@ -27,7 +27,7 @@ namespace Reservation_API.Controllers.Auth
             _userManager = usermanager;
         }
         [HttpPost]
-        public async Task<IActionResult> Login([FromForm]LoginModel user)
+        public async Task<IActionResult> Login([FromBody]LoginModel user)
         {
             var selectedUser = await UserExists(user);
             if (selectedUser != null)

@@ -44,6 +44,11 @@ namespace Reservation_API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v1/swagger.json", "MyAPI V1");
+            });
             app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseSignalR(s => s.MapHub<TicketHub>("/ticket"));

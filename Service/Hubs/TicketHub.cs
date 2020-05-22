@@ -8,6 +8,7 @@ using System.Text;
 namespace Service.Hubs
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "admin")]
     public class TicketHub : Hub
     {
     }

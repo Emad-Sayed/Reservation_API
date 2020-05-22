@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DB.Migrations
+namespace _DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200521212403_ini")]
-    partial class ini
+    [Migration("20200522203015_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,13 +78,13 @@ namespace DB.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f05e2309-3790-4a6c-a140-73d011e1a8cc",
+                            ConcurrencyStamp = "497c2ce5-ff3c-4808-a921-5f47e9c7f4c2",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBkxMiIslXse09b3W2qfvNz3eZMoO6YEDtAKPte48IJpFMm4olFHK+2bOP8d63oT8w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJsOSJjC7bVXOV/p/NxsfsMYvvBl/d1tAn/qONTwnOjYSnE1g1fBEU8+q2hYX9SCrg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -214,6 +214,100 @@ namespace DB.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("_DB.Model.Ticket.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CLIENT_ID");
+
+                    b.Property<DateTime>("CREATED_DATE");
+
+                    b.Property<bool>("IS_DELETED");
+
+                    b.Property<DateTime?>("LAST_UPDATE");
+
+                    b.Property<int>("STATE_ID");
+
+                    b.Property<int>("TICKET_NUMBER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CLIENT_ID");
+
+                    b.HasIndex("STATE_ID");
+
+                    b.ToTable("TICKETS");
+                });
+
+            modelBuilder.Entity("_DB.Model.Ticket.Ticket_Reserve", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CREATED_DATE");
+
+                    b.Property<string>("EMPLOYEE_ID");
+
+                    b.Property<bool>("IS_DELETED");
+
+                    b.Property<DateTime?>("LAST_UPDATE");
+
+                    b.Property<int>("TICKET_ID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EMPLOYEE_ID");
+
+                    b.HasIndex("TICKET_ID");
+
+                    b.ToTable("TICKET_RESERVES");
+                });
+
+            modelBuilder.Entity("_DB.Model.Ticket.Ticket_State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CREATED_DATE");
+
+                    b.Property<bool>("IS_DELETED");
+
+                    b.Property<DateTime?>("LAST_UPDATE");
+
+                    b.Property<string>("STATE_NAME");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TICKET_STATES");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CREATED_DATE = new DateTime(2020, 5, 22, 22, 30, 14, 492, DateTimeKind.Local).AddTicks(6626),
+                            IS_DELETED = false,
+                            STATE_NAME = "PENDING"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CREATED_DATE = new DateTime(2020, 5, 22, 22, 30, 14, 494, DateTimeKind.Local).AddTicks(1270),
+                            IS_DELETED = false,
+                            STATE_NAME = "SERVING"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CREATED_DATE = new DateTime(2020, 5, 22, 22, 30, 14, 494, DateTimeKind.Local).AddTicks(1299),
+                            IS_DELETED = false,
+                            STATE_NAME = "DONE"
+                        });
+                });
+
             modelBuilder.Entity("DB.Model.Auth.AppUserRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
@@ -224,7 +318,7 @@ namespace DB.Migrations
                         new
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            ConcurrencyStamp = "cfdefc0a-7df6-4185-9e19-97696442c9fe",
+                            ConcurrencyStamp = "2ebc763b-9bfd-4ec6-9319-4e9164909c76",
                             Name = "admin",
                             NormalizedName = "admin"
                         });
@@ -272,6 +366,30 @@ namespace DB.Migrations
                     b.HasOne("DB.Model.Auth.AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("_DB.Model.Ticket.Ticket", b =>
+                {
+                    b.HasOne("DB.Model.Auth.AppUser", "CLIENT")
+                        .WithMany()
+                        .HasForeignKey("CLIENT_ID");
+
+                    b.HasOne("_DB.Model.Ticket.Ticket_State", "STATE")
+                        .WithMany()
+                        .HasForeignKey("STATE_ID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("_DB.Model.Ticket.Ticket_Reserve", b =>
+                {
+                    b.HasOne("DB.Model.Auth.AppUser", "EMPLOYEE")
+                        .WithMany()
+                        .HasForeignKey("EMPLOYEE_ID");
+
+                    b.HasOne("_DB.Model.Ticket.Ticket", "TICKET")
+                        .WithMany()
+                        .HasForeignKey("TICKET_ID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
