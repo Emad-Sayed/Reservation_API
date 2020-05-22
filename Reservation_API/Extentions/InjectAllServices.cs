@@ -1,4 +1,8 @@
-﻿using DB.Context;
+﻿using _Service.BUSINESS;
+using _Service.INTERFACES.GENERAL;
+using _Service.INTERFACES.TICKET;
+using _Service.Vw_Model.GENERAL;
+using DB.Context;
 using DB.Model.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +28,7 @@ namespace Reservation_API.Extentions
             service.InjectAuth();
             service.Inject_CORS();
             service.Inject_Swagger();
+            service.Inject_Business();
         }
         public static void Inject_DbContext(this IServiceCollection service)
         {
@@ -91,6 +96,11 @@ namespace Reservation_API.Extentions
                     }
                 };
             });
+        }
+        public static void Inject_Business(this IServiceCollection service)
+        {
+            service.AddScoped<IREQUEST_RESULT, REQUEST_RESULT>();
+            service.AddScoped<ITICKET_SERVICE, Ticket_Service>();
         }
     }
 }

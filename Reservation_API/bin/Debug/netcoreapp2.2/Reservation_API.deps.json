@@ -478,7 +478,8 @@
       },
       "_Service/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.0",
+          "_DB": "1.0.0"
         },
         "runtime": {
           "_Service.dll": {}

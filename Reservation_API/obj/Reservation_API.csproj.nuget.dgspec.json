@@ -171,7 +171,11 @@
         },
         "frameworks": {
           "netstandard2.0": {
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\hp\\source\\repos\\Reservation_API\\DB\\_DB.csproj": {
+                "projectPath": "C:\\Users\\hp\\source\\repos\\Reservation_API\\DB\\_DB.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

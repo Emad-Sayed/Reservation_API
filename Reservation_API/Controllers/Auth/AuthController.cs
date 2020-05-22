@@ -6,12 +6,12 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using DB.Model.Auth;
-using DB.Vw_Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Service.Vw_Model.Auth;
 
 namespace Reservation_API.Controllers.Auth
 {

@@ -752,6 +752,19 @@
         "compile": {
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
+      },
+      "_DB/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.2.0"
+        },
+        "compile": {
+          "bin/placeholder/_DB.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/_DB.dll": {}
+        }
       }
     }
   },
@@ -3062,12 +3075,18 @@
         "system.threading.tasks.4.0.11.nupkg.sha512",
         "system.threading.tasks.nuspec"
       ]
+    },
+    "_DB/1.0.0": {
+      "type": "project",
+      "path": "../DB/_DB.csproj",
+      "msbuildProject": "../DB/_DB.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.2.0",
-      "NETStandard.Library >= 2.0.3"
+      "NETStandard.Library >= 2.0.3",
+      "_DB >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3099,7 +3118,11 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\hp\\source\\repos\\Reservation_API\\DB\\_DB.csproj": {
+              "projectPath": "C:\\Users\\hp\\source\\repos\\Reservation_API\\DB\\_DB.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

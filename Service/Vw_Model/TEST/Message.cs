@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace _DB.Vw_Model.TEST
+namespace Service.Vw_Model.TEST
 {
     public class Message
     {

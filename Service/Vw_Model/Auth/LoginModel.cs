@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DB.Vw_Model
+namespace Service.Vw_Model.Auth
 {
     public class LoginModel
     {
