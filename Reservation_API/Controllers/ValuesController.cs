@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Reservation_API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [Authorize(Roles = "admin")]
     [Authorize]
     public class ValuesController : ControllerBase
     {

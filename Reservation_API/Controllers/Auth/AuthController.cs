@@ -55,15 +55,21 @@ namespace Reservation_API.Controllers.Auth
             //Payload=================
             var Claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub,Authuser.UserName),
+                new Claim(JwtRegisteredClaimNames.Sub,Authuser.Id),
                 new Claim(JwtRegisteredClaimNames.Email,Authuser.Email),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
+            #region for Role Identity
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(Claims, "Token");
+            // Adding roles code
+            // Roles property is string collection but you can modify Select code if it it's not
+            claimsIdentity.AddClaims(rolesFormRepo.Select(role => new Claim(ClaimTypes.Role, role)));
+            #endregion
 
             var Token = new JwtSecurityToken(
                 issuer: "asd@asd.com",
                 audience: "asd@asd.com",
-                Claims,
+                claimsIdentity.Claims,
                 expires: DateTime.Now.AddDays(3),
                 signingCredentials: credential
                 );
