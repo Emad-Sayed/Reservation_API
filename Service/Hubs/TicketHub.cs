@@ -8,7 +8,7 @@ using System.Text;
 namespace Service.Hubs
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin,employee")]
     public class TicketHub : Hub
     {
         public void GetConnectionId()

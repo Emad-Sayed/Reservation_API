@@ -37,7 +37,7 @@ namespace Reservation_API.Controllers.Ticket
             var Branch_Dept = int.Parse(User.GetClaimType("Branch_Departement"));
             var result = service.GET_TICKETS(Paging, Branch_Dept);
             if (result.Status == false)
-                return BadRequest();
+                return BadRequest(result);
             return Ok(result);
         }
         [HttpPost("ADD_TICKET")]
@@ -46,7 +46,7 @@ namespace Reservation_API.Controllers.Ticket
             Ticket.CLIENT_ID = User.GetClaimType("Id");
             var result = service.ADD_TICKET(Ticket);
             if (result.Status == false)
-                return BadRequest();
+                return BadRequest(result);
             return Ok(result);
         }
     }
