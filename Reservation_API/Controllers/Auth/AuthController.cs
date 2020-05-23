@@ -55,7 +55,8 @@ namespace Reservation_API.Controllers.Auth
             //Payload=================
             var Claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub,Authuser.Id),
+                new Claim("Id",Authuser.Id),
+                new Claim("Branch_Departement",Authuser.BRANCH_DEPARTEMENT_ID.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email,Authuser.Email),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };

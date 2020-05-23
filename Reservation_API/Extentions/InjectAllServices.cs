@@ -1,7 +1,9 @@
 ﻿using _Service.BUSINESS;
 using _Service.INTERFACES.GENERAL;
 using _Service.INTERFACES.TICKET;
+using _Service.Mapper;
 using _Service.Vw_Model.GENERAL;
+using AutoMapper;
 using DB.Context;
 using DB.Model.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -24,8 +26,9 @@ namespace Reservation_API.Extentions
         public static void InjectAll(this IServiceCollection service)
         {
             service.Inject_DbContext();
+            service.Inject_Mapper();
             service.Inject_Identity();
-            service.InjectAuth();
+            service.Inject_Auth();
             service.Inject_CORS();
             service.Inject_Swagger();
             service.Inject_Business();
@@ -52,6 +55,16 @@ namespace Reservation_API.Extentions
                     .SetIsOriginAllowed((host) => true));
             });
         }
+        public static void Inject_Mapper(this IServiceCollection service)
+        {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            service.AddSingleton(mapper);
+        }
         public static void Inject_Swagger(this IServiceCollection service)
         {
             service.AddSwaggerGen(swagger =>
@@ -59,7 +72,7 @@ namespace Reservation_API.Extentions
                 swagger.SwaggerDoc("v1", new OpenApiInfo { Title = "My API" });
             });
         }
-        public static void InjectAuth(this IServiceCollection service)
+        public static void Inject_Auth(this IServiceCollection service)
         {
             service.AddAuthentication(options =>
             {
@@ -100,6 +113,7 @@ namespace Reservation_API.Extentions
         public static void Inject_Business(this IServiceCollection service)
         {
             service.AddScoped<IREQUEST_RESULT, REQUEST_RESULT>();
+            service.AddScoped<INOTIFICATION_SERVICE, Notification_Service>();
             service.AddScoped<ITICKET_SERVICE, Ticket_Service>();
         }
     }

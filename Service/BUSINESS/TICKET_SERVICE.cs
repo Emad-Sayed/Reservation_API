@@ -8,36 +8,90 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using static _Service.Vw_Model.TICKET.TICKET_MODEL;
+using AutoMapper;
+using _DB.Model.Ticket;
 
 namespace _Service.BUSINESS
 {
     public class Ticket_Service : ITICKET_SERVICE
     {
         private AppDbContext context;
+        private IMapper mapper;
         private IREQUEST_RESULT request_result;
-        public Ticket_Service(AppDbContext context_, IREQUEST_RESULT request_result_)
+        private INOTIFICATION_SERVICE notification_service;
+        public Ticket_Service(AppDbContext context_, IMapper _mapper, INOTIFICATION_SERVICE _notification_service, IREQUEST_RESULT request_result_)
         {
             context = context_;
+            mapper = _mapper;
+            notification_service = _notification_service;
             request_result = request_result_;
         }
-        public IREQUEST_RESULT ADD_TICKET(TICKET_MODEL.ADD_TICKET_MODEL TICKET)
+        public IREQUEST_RESULT ADD_TICKET(ADD_TICKET_MODEL ticket)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ticket.CREATED_DATE = DateTime.Now;
+                if (ticket.TICKET_NUMBER == -1)
+                {
+                    var TimeOfNow = DateTime.Now.TimeOfDay;
+                    var Config = context.Configuration.FirstOrDefault();
+                    //CHECK IF During the Working Time
+                    if(Config.START_RESERVING_TIME > TimeOfNow || Config.END_RESERVING_TIME < TimeOfNow)
+                    {
+                        request_result.Status = false;
+                        request_result.Error_AR = "لا يمكن الحجز في هذا الموعد";
+                        request_result.Error_EN = "Time not available for Reservation";
+                        request_result.Data = null;
+                        return request_result;
+                    }
+                    var CurrentNumber = context.Tickets.Where(t=>t.BRANCH_DEPARTEMENT_ID == ticket.BRANCH_DEPARTEMENT_ID)
+                        .Select(t=>t.TICKET_NUMBER).DefaultIfEmpty(0).Max();
+                    ticket.TICKET_NUMBER = CurrentNumber + 1;
+                    Ticket newTicket = mapper.Map<Ticket>(ticket);
+                    newTicket.STATE_ID = 1;
+                    context.Tickets.Add(newTicket);
+                    context.SaveChanges();
+                    notification_service.Notifiy_New_Ticket();
+                }
+                return request_result;
+            }
+            catch (Exception ex)
+            {
+                request_result.Status = false;
+                request_result.Error_AR = ex.Message + " : " + ex.Source;
+                request_result.Error_EN = ex.Message + " : " + ex.Source;
+                request_result.Data = null;
+                return request_result;
+            }
         }
 
         public IREQUEST_RESULT DELETE(int ID)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                return request_result;
+            }
+            catch (Exception ex)
+            {
+                request_result.Status = false;
+                request_result.Error_AR = ex.Message + " : " + ex.Source;
+                request_result.Error_EN = ex.Message + " : " + ex.Source;
+                request_result.Data = null;
+                return request_result;
+            }
         }
 
-        public IREQUEST_RESULT GET_TICKETS(PAGINATION_MODEL Paging)
+        public IREQUEST_RESULT GET_TICKETS(PAGINATION_MODEL Paging, int Branch_Dept)
         {
             try
             {
-                var tickets = context.TICKETS.Where(t => t.CREATED_DATE.Date == DateTime.Now.Date)
+                var tickets = context.Tickets.Where(t => t.BRANCH_DEPARTEMENT_ID == Branch_Dept
+                && t.CREATED_DATE.Date == DateTime.Now.Date)
                     .OrderBy(t => t.TICKET_NUMBER).Skip((Paging.Page_Number - 1) * Paging.Page_Size).Take(Paging.Page_Size).ToList();
 
-                int TotalRows = context.TICKETS.Where(t => t.CREATED_DATE.Date == DateTime.Now.Date).Count();
+                int TotalRows = context.Tickets.Where(t => t.CREATED_DATE.Date == DateTime.Now.Date).Count();
                 if (tickets.Count == 0)
                 {
                     request_result.Status = false;
@@ -55,7 +109,7 @@ namespace _Service.BUSINESS
                 request_result.Data = tickets;
                 return request_result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 request_result.Status = false;
                 request_result.Error_AR = ex.Message + " : " + ex.Source;
