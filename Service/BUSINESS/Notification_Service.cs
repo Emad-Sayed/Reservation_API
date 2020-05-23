@@ -1,9 +1,11 @@
-﻿using _Service.INTERFACES.GENERAL;
+﻿using _DB.Model.Ticket;
+using _Service.INTERFACES.GENERAL;
 using Microsoft.AspNetCore.SignalR;
 using Service.Hubs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static _Service.Vw_Model.Notification.NOTIFICATION_MODEL;
 
 namespace _Service.BUSINESS
 {
@@ -15,14 +17,15 @@ namespace _Service.BUSINESS
             ticketContext = _ticketContext;
         }
 
-        public void Create_Ticket_Group()
+        public async void Create_Ticket_Group(CREATE_NOTIFICATION_GROUP model)
         {
-            throw new NotImplementedException();
+            await ticketContext.Groups.AddToGroupAsync(model.Connection_Id,model.Group_Name);
+            //await ticketContext.Clients.All.SendAsync("receiveMessage", "Group Done");
         }
-
-        public void Notifiy_New_Ticket()
+    
+        public void Notifiy_New_Ticket(Ticket ticket)
         {
-            ticketContext.Clients.All.SendAsync("receiveMessage","New Ticket");
+            ticketContext.Clients.Group(ticket.BRANCH_DEPARTEMENT_ID+"").SendAsync("receiveMessage",ticket.Id);
         }
     }
 }

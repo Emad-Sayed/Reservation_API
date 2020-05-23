@@ -11,5 +11,11 @@ namespace Service.Hubs
     [Authorize(Roles = "admin")]
     public class TicketHub : Hub
     {
+        public void GetConnectionId()
+        {
+            //Clients.All.SendAsync("saveConnectionId", Context.ConnectionId);
+            Clients.Client(Context.ConnectionId).SendAsync("saveConnectionId", Context.ConnectionId);
+
+        }
     }
 }

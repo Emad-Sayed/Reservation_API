@@ -55,14 +55,23 @@ namespace DB.Context
             new BranchDepartement { Id = 6, BRANCH_ID = 2, DEPARTEMENT_ID = 3 });
             // any guid
             const string ADMIN_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
+            const string EMPLOYEE_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e577";
             // any guid, but nothing is against to use the same one
             const string ROLE_ID = ADMIN_ID;
+            const string ROLE_ID2 = EMPLOYEE_ID;
             builder.Entity<AppUserRole>().HasData(new IdentityRole
             {
                 Id = ROLE_ID,
                 Name = "admin",
                 NormalizedName = "admin"
-            });
+            },
+            new IdentityRole
+            {
+                Id = ROLE_ID2,
+                Name = "employee",
+                NormalizedName = "employee"
+            }
+            );
 
             var hasher = new PasswordHasher<AppUser>();
             builder.Entity<AppUser>().HasData(new AppUser
@@ -76,12 +85,30 @@ namespace DB.Context
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "admindemo"),
                 SecurityStamp = string.Empty
-            });
+            }
+            , new AppUser
+            {
+                Id = EMPLOYEE_ID,
+                BRANCH_DEPARTEMENT_ID = 2,
+                UserName = "employee",
+                NormalizedUserName = "employee",
+                Email = "employee@employee.com",
+                NormalizedEmail = "employee@employee.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "admindemo"),
+                SecurityStamp = string.Empty
+            }
+            );
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
                 RoleId = ROLE_ID,
                 UserId = ADMIN_ID
+            },
+            new IdentityUserRole<string>
+            {
+                RoleId = ROLE_ID2,
+                UserId = EMPLOYEE_ID
             });
             builder.Entity<Ticket_State>().HasData(
                 new Ticket_State { Id = 1, STATE_NAME = "PENDING" },

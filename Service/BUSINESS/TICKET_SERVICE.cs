@@ -52,7 +52,7 @@ namespace _Service.BUSINESS
                     newTicket.STATE_ID = 1;
                     context.Tickets.Add(newTicket);
                     context.SaveChanges();
-                    notification_service.Notifiy_New_Ticket();
+                    notification_service.Notifiy_New_Ticket(newTicket);
                 }
                 return request_result;
             }
