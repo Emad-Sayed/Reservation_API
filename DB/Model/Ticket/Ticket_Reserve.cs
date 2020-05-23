@@ -8,12 +8,12 @@ namespace _DB.Model.Ticket
 {
     public class Ticket_Reserve : BaseEntity
     {
-        [ForeignKey("TICKET")]
-        public int TICKET_ID { get; set; }
-        public Ticket TICKET { get; set; }
-        [ForeignKey("EMPLOYEE")]
-        public string EMPLOYEE_ID { get; set; }
-        public AppUser EMPLOYEE { get; set; }
+        [ForeignKey("Ticket")]
+        public int Ticket_Id { get; set; }
+        public Ticket Ticket { get; set; }
+        [ForeignKey("Employee")]
+        public string Employee_Id { get; set; }
+        public AppUser Employee { get; set; }
 
     }
 }

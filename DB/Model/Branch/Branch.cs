@@ -6,8 +6,8 @@ namespace _DB.Model.Branch
 {
     public class Branch : BaseEntity
     {
-        public string BRANCH_NAME { get; set; }
-        public string BRANCH_ADDRESS { get; set; }
-        public string BRANCH_PHONE { get; set; }
+        public string Branch_Name { get; set; }
+        public string Branch_Address { get; set; }
+        public string Branch_Phone { get; set; }
     }
 }

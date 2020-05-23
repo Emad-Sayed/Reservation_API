@@ -31,13 +31,24 @@ namespace _Service.BUSINESS
         {
             try
             {
-                ticket.CREATED_DATE = DateTime.Now;
-                if (ticket.TICKET_NUMBER == -1)
+                ticket.Created_Date = DateTime.Now;
+                if (ticket.Ticket_Number == -1)
                 {
                     var TimeOfNow = DateTime.Now.TimeOfDay;
                     var Config = context.Configuration.FirstOrDefault();
+                    //CHECK IF HAS TICKET BEFORE
+                    var SelectedTicket = context.Tickets.FirstOrDefault(t => t.Branch_Departement_Id == ticket.Branch_Departement_Id
+                    && t.Client_Id == ticket.Client_Id && t.State_Id != 3 && t.Created_Date.Date == DateTime.Now.Date);
+                    if (SelectedTicket != null)
+                    {
+                        request_result.Status = false;
+                        request_result.Error_AR = "يوجد حجز مسبق في نفس اليوم";
+                        request_result.Error_EN = "There is already already ticket Requested";
+                        request_result.Data = SelectedTicket;
+                        return request_result;
+                    }
                     //CHECK IF During the Working Time
-                    if(Config.START_RESERVING_TIME > TimeOfNow || Config.END_RESERVING_TIME < TimeOfNow)
+                    if (Config.Start_Reserving_Time > TimeOfNow || Config.End_Reserving_Time < TimeOfNow)
                     {
                         request_result.Status = false;
                         request_result.Error_AR = "لا يمكن الحجز في هذا الموعد";
@@ -45,14 +56,15 @@ namespace _Service.BUSINESS
                         request_result.Data = null;
                         return request_result;
                     }
-                    var CurrentNumber = context.Tickets.Where(t=>t.BRANCH_DEPARTEMENT_ID == ticket.BRANCH_DEPARTEMENT_ID)
-                        .Select(t=>t.TICKET_NUMBER).DefaultIfEmpty(0).Max();
-                    ticket.TICKET_NUMBER = CurrentNumber + 1;
+                    var CurrentNumber = context.Tickets.Where(t => t.Branch_Departement_Id == ticket.Branch_Departement_Id)
+                        .Select(t => t.Ticket_Number).DefaultIfEmpty(0).Max();
+                    ticket.Ticket_Number = CurrentNumber + 1;
                     Ticket newTicket = mapper.Map<Ticket>(ticket);
-                    newTicket.STATE_ID = 1;
+                    newTicket.State_Id = 1;
                     context.Tickets.Add(newTicket);
                     context.SaveChanges();
                     notification_service.Notifiy_New_Ticket(newTicket);
+                    request_result.Data = newTicket;
                 }
                 return request_result;
             }
@@ -87,11 +99,11 @@ namespace _Service.BUSINESS
         {
             try
             {
-                var tickets = context.Tickets.Where(t => t.BRANCH_DEPARTEMENT_ID == Branch_Dept
-                && t.CREATED_DATE.Date == DateTime.Now.Date)
-                    .OrderBy(t => t.TICKET_NUMBER).Skip((Paging.Page_Number - 1) * Paging.Page_Size).Take(Paging.Page_Size).ToList();
+                var tickets = context.Tickets.Where(t => t.Branch_Departement_Id == Branch_Dept
+                && t.Created_Date.Date == DateTime.Now.Date)
+                    .OrderBy(t => t.Ticket_Number).Skip((Paging.Page_Number - 1) * Paging.Page_Size).Take(Paging.Page_Size).ToList();
 
-                int TotalRows = context.Tickets.Where(t => t.CREATED_DATE.Date == DateTime.Now.Date).Count();
+                int TotalRows = context.Tickets.Where(t => t.Created_Date.Date == DateTime.Now.Date).Count();
                 if (tickets.Count == 0)
                 {
                     request_result.Status = false;

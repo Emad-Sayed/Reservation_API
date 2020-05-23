@@ -43,7 +43,7 @@ namespace Reservation_API.Controllers.Ticket
         [HttpPost("ADD_TICKET")]
         public ActionResult ADD_TICKET([FromBody]ADD_TICKET_MODEL Ticket)
         {
-            Ticket.CLIENT_ID = User.GetClaimType("Id");
+            Ticket.Client_Id = User.GetClaimType("Id");
             var result = service.ADD_TICKET(Ticket);
             if (result.Status == false)
                 return BadRequest(result);

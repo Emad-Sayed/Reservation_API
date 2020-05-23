@@ -25,7 +25,7 @@ namespace _Service.BUSINESS
     
         public void Notifiy_New_Ticket(Ticket ticket)
         {
-            ticketContext.Clients.Group(ticket.BRANCH_DEPARTEMENT_ID+"").SendAsync("receiveMessage",ticket.Id);
+            ticketContext.Clients.Group(ticket.Branch_Departement_Id+"").SendAsync("receiveMessage",ticket.Id);
         }
     }
 }

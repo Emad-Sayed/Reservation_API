@@ -7,11 +7,11 @@ namespace _DB.Model.Branch
 {
     public class BranchDepartement : BaseEntity
     {
-        [ForeignKey("BRANCH")]
-        public int BRANCH_ID { get; set; }
-        [ForeignKey("DEPARTEMENT")]
-        public int DEPARTEMENT_ID { get; set; }
-        public Branch BRANCH { get; set; }
-        public Departement DEPARTEMENT { get; set; }
+        [ForeignKey("Branch")]
+        public int Branch_Id { get; set; }
+        [ForeignKey("Departement")]
+        public int Departement_Id { get; set; }
+        public Branch Branch { get; set; }
+        public Departement Departement { get; set; }
     }
 }

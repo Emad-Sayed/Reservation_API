@@ -9,12 +9,12 @@ namespace _DB.Model
     {
         public BaseEntity()
         {
-            CREATED_DATE = DateTime.Now;
+            Created_Date = DateTime.Now;
         }
         public int Id { get; set; }
-        public DateTime CREATED_DATE { get; set; }
-        public DateTime? LAST_UPDATE { get; set; }
+        public DateTime Created_Date { get; set; }
+        public DateTime? Last_Update { get; set; }
         [DefaultValue(false)]
-        public bool IS_DELETED { get; set; }
+        public bool Is_Deleted { get; set; }
     }
 }

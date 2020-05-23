@@ -6,6 +6,6 @@ namespace _DB.Model.Ticket
 {
     public class Ticket_State : BaseEntity
     {
-        public string STATE_NAME { get; set; }
+        public string State_Name { get; set; }
     }
 }

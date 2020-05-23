@@ -10,16 +10,16 @@ namespace _DB.Model.Ticket
 {
     public class Ticket : BaseEntity
     {
-        public int TICKET_NUMBER { get; set; }
-        [ForeignKey("CLIENT")]
-        public string CLIENT_ID { get; set; }
-        public AppUser CLIENT { get; set; }
-        [ForeignKey("STATE")]
-        public int STATE_ID { get; set; }
-        public Ticket_State STATE { get; set; }
-        [ForeignKey("BRANCH_DEPARTEMENT")]
-        public int BRANCH_DEPARTEMENT_ID { get; set; }
-        public BranchDepartement BRANCH_DEPARTEMENT { get; set; }
+        public int Ticket_Number { get; set; }
+        [ForeignKey("Client")]
+        public string Client_Id { get; set; }
+        public AppUser Client { get; set; }
+        [ForeignKey("State")]
+        public int State_Id { get; set; }
+        public Ticket_State State { get; set; }
+        [ForeignKey("Branch_Departement")]
+        public int Branch_Departement_Id { get; set; }
+        public BranchDepartement Branch_Departement { get; set; }
     }
 
 }
