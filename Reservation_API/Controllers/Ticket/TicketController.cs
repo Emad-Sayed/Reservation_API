@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using _Service.INTERFACES.TICKET;
 using _Service.Vw_Model.GENERAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -14,6 +15,7 @@ using static _Service.Vw_Model.TICKET.TICKET_MODEL;
 
 namespace Reservation_API.Controllers.Ticket
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TicketController : ControllerBase

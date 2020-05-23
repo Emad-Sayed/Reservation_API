@@ -16,5 +16,10 @@ namespace _Service.Vw_Model.TICKET
         public class UPDATE_TICKET_MODEL
         {
         }
+        public class DONE_TICKET_MODEL
+        {
+            public int Id { get; set; }
+            public string Employee_Id { get; set; }
+        }
     }
 }

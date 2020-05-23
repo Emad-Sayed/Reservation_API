@@ -115,6 +115,7 @@ namespace Reservation_API.Extentions
             service.AddScoped<IREQUEST_RESULT, REQUEST_RESULT>();
             service.AddScoped<INOTIFICATION_SERVICE, Notification_Service>();
             service.AddScoped<ITICKET_SERVICE, Ticket_Service>();
+            service.AddScoped<ITICKET_SERVING_SERVICE, TicketServing_Service>();
         }
     }
 }
