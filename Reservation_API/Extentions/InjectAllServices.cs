@@ -1,5 +1,6 @@
 ﻿using _Service.BUSINESS;
 using _Service.INTERFACES.GENERAL;
+using _Service.INTERFACES.REGISTER;
 using _Service.INTERFACES.TICKET;
 using _Service.Mapper;
 using _Service.Vw_Model.GENERAL;
@@ -113,6 +114,7 @@ namespace Reservation_API.Extentions
         public static void Inject_Business(this IServiceCollection service)
         {
             service.AddScoped<IREQUEST_RESULT, REQUEST_RESULT>();
+            service.AddScoped<IREGISTER_SERVICE, Register_Service>();
             service.AddScoped<INOTIFICATION_SERVICE, Notification_Service>();
             service.AddScoped<ITICKET_SERVICE, Ticket_Service>();
             service.AddScoped<ITICKET_SERVING_SERVICE, TicketServing_Service>();

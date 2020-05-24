@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace _DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200523191037_init")]
-    partial class init
+    [Migration("20200524204439_blok")]
+    partial class blok
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,8 @@ namespace _DB.Migrations
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<int>("BRANCH_DEPARTEMENT_ID");
+
+                    b.Property<bool>("Block");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -83,13 +85,14 @@ namespace _DB.Migrations
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
                             BRANCH_DEPARTEMENT_ID = 1,
-                            ConcurrencyStamp = "c152ad99-3bb7-4cae-8a67-7f04740d18fa",
+                            Block = false,
+                            ConcurrencyStamp = "448778e8-b529-487a-b7bf-a4b307e65a70",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIcg+n/wojg8s8lcx1vh8UPP4b1NiAYNwJklUYjle6kU9dJGojsl5Ouda5pPdpN64w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGKAVlWvijPPwCGuGgZYSi7SmrzkaQDqmOz1PyUi3Z/M3MfdEVfopynINIbyN+aVMg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -100,17 +103,36 @@ namespace _DB.Migrations
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e577",
                             AccessFailedCount = 0,
                             BRANCH_DEPARTEMENT_ID = 2,
-                            ConcurrencyStamp = "fc230463-c117-45dd-b730-d4bc698d94b3",
+                            Block = false,
+                            ConcurrencyStamp = "08aef4a4-13ab-42f6-ba40-f78c54139c30",
                             Email = "employee@employee.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "employee@employee.com",
                             NormalizedUserName = "employee",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPqp2p2uUCSunEkNR2anfrfSbL7Ahus6MsKbt9RdTnQUanFava/uRfaZGPFK5wQs0Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMEN28pqGJ33T0iXbDBWNkSKauhkf5Ea8ryPuRnuMPvvZlRAC4ZpQ+a1rCiS5NbCdQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "employee"
+                        },
+                        new
+                        {
+                            Id = "a18be9c0-aa65-4af8-bd17-00bd9344e578",
+                            AccessFailedCount = 0,
+                            BRANCH_DEPARTEMENT_ID = 4,
+                            Block = false,
+                            ConcurrencyStamp = "7e291e82-463c-4344-8af5-3f38fd2d1612",
+                            Email = "client@client.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "client@client.com",
+                            NormalizedUserName = "client",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG5X677dp2h4m0hWptFRTvrqGl4XNo9yhcEH35jqAI10jwnijC+bM4Zq8PYCwjvq+g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "client"
                         });
                 });
 
@@ -270,7 +292,7 @@ namespace _DB.Migrations
                             Branch_Address = "108 St Number 4",
                             Branch_Name = "Cairo",
                             Branch_Phone = "101051453123",
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(2051),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(1123),
                             Is_Deleted = false
                         },
                         new
@@ -279,7 +301,7 @@ namespace _DB.Migrations
                             Branch_Address = "445 St Number 8",
                             Branch_Name = "Gia",
                             Branch_Phone = "112323123",
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(4136),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(3142),
                             Is_Deleted = false
                         });
                 });
@@ -313,7 +335,7 @@ namespace _DB.Migrations
                         {
                             Id = 1,
                             Branch_Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(6942),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(6268),
                             Departement_Id = 1,
                             Is_Deleted = false
                         },
@@ -321,7 +343,7 @@ namespace _DB.Migrations
                         {
                             Id = 2,
                             Branch_Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8317),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(7622),
                             Departement_Id = 2,
                             Is_Deleted = false
                         },
@@ -329,7 +351,7 @@ namespace _DB.Migrations
                         {
                             Id = 3,
                             Branch_Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8332),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(7635),
                             Departement_Id = 3,
                             Is_Deleted = false
                         },
@@ -337,7 +359,7 @@ namespace _DB.Migrations
                         {
                             Id = 4,
                             Branch_Id = 2,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8334),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(7637),
                             Departement_Id = 1,
                             Is_Deleted = false
                         },
@@ -345,7 +367,7 @@ namespace _DB.Migrations
                         {
                             Id = 5,
                             Branch_Id = 2,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8335),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(7639),
                             Departement_Id = 2,
                             Is_Deleted = false
                         },
@@ -353,7 +375,7 @@ namespace _DB.Migrations
                         {
                             Id = 6,
                             Branch_Id = 2,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8337),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(7640),
                             Departement_Id = 3,
                             Is_Deleted = false
                         });
@@ -381,21 +403,21 @@ namespace _DB.Migrations
                         new
                         {
                             Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5305),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(4402),
                             Departement_Name = "ACCOUNTING",
                             Is_Deleted = false
                         },
                         new
                         {
                             Id = 2,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5931),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(5031),
                             Departement_Name = "COMPLAIGN",
                             Is_Deleted = false
                         },
                         new
                         {
                             Id = 3,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5938),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 184, DateTimeKind.Local).AddTicks(5040),
                             Departement_Name = "REQUIREMENT",
                             Is_Deleted = false
                         });
@@ -425,7 +447,7 @@ namespace _DB.Migrations
                         new
                         {
                             Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 246, DateTimeKind.Local).AddTicks(3449),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 181, DateTimeKind.Local).AddTicks(8743),
                             End_Reserving_Time = new TimeSpan(0, 18, 30, 0, 0),
                             Is_Deleted = false,
                             Start_Reserving_Time = new TimeSpan(0, 7, 30, 0, 0)
@@ -510,21 +532,21 @@ namespace _DB.Migrations
                         new
                         {
                             Id = 1,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(1348),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 226, DateTimeKind.Local).AddTicks(5148),
                             Is_Deleted = false,
                             State_Name = "PENDING"
                         },
                         new
                         {
                             Id = 2,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(2125),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 226, DateTimeKind.Local).AddTicks(6303),
                             Is_Deleted = false,
                             State_Name = "SERVING"
                         },
                         new
                         {
                             Id = 3,
-                            Created_Date = new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(2134),
+                            Created_Date = new DateTime(2020, 5, 24, 22, 44, 39, 226, DateTimeKind.Local).AddTicks(6315),
                             Is_Deleted = false,
                             State_Name = "DONE"
                         });
@@ -540,16 +562,23 @@ namespace _DB.Migrations
                         new
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            ConcurrencyStamp = "a8f2656a-69cc-4ba7-af21-07b593fedfdb",
+                            ConcurrencyStamp = "6f7fca15-4841-4171-922b-f79defcea979",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e577",
-                            ConcurrencyStamp = "bd4f09af-4df1-4482-993b-fe905973a78a",
+                            ConcurrencyStamp = "12cb932b-2e28-42a8-8348-f57b45b2d751",
                             Name = "employee",
                             NormalizedName = "employee"
+                        },
+                        new
+                        {
+                            Id = "a18be9c0-aa65-4af8-bd17-00bd9344e578",
+                            ConcurrencyStamp = "851ada55-d6ec-4d4b-8bb1-f19b53463774",
+                            Name = "client",
+                            NormalizedName = "client"
                         });
                 });
 

@@ -5,13 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Service.Hubs
+namespace _Service.HUBS
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize(Roles = "admin,employee")]
-    public class TicketHub : Hub
+    public class TicketServingHub : Hub
     {
-        public void CreateNotificationGroup(string GroupName)
+        public void CreateTracingGroup(string GroupName)
         {
             Groups.AddToGroupAsync(Context.ConnectionId, GroupName);
             //Clients.Group(GroupName).SendAsync("receiveMessage", "Group Created");

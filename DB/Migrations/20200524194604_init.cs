@@ -329,8 +329,9 @@ namespace _DB.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Discriminator", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "a18be9c0-aa65-4af8-bd17-00bd9344e575", "a8f2656a-69cc-4ba7-af21-07b593fedfdb", "AppUserRole", "admin", "admin" },
-                    { "a18be9c0-aa65-4af8-bd17-00bd9344e577", "bd4f09af-4df1-4482-993b-fe905973a78a", "AppUserRole", "employee", "employee" }
+                    { "a18be9c0-aa65-4af8-bd17-00bd9344e575", "f691ffc2-53d9-420a-8296-0b99e067dc95", "AppUserRole", "admin", "admin" },
+                    { "a18be9c0-aa65-4af8-bd17-00bd9344e577", "3da6d9ac-8e41-4733-904c-3fd9a22c2630", "AppUserRole", "employee", "employee" },
+                    { "a18be9c0-aa65-4af8-bd17-00bd9344e578", "719c0d6c-8bed-4226-9df2-f41d591b3ef7", "AppUserRole", "client", "client" }
                 });
 
             migrationBuilder.InsertData(
@@ -338,23 +339,23 @@ namespace _DB.Migrations
                 columns: new[] { "Id", "Branch_Address", "Branch_Name", "Branch_Phone", "Created_Date", "Is_Deleted", "Last_Update" },
                 values: new object[,]
                 {
-                    { 1, "108 St Number 4", "Cairo", "101051453123", new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(2051), false, null },
-                    { 2, "445 St Number 8", "Gia", "112323123", new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(4136), false, null }
+                    { 1, "108 St Number 4", "Cairo", "101051453123", new DateTime(2020, 5, 24, 21, 46, 3, 980, DateTimeKind.Local).AddTicks(7349), false, null },
+                    { 2, "445 St Number 8", "Gia", "112323123", new DateTime(2020, 5, 24, 21, 46, 3, 980, DateTimeKind.Local).AddTicks(9195), false, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Configuration",
                 columns: new[] { "Id", "Created_Date", "End_Reserving_Time", "Is_Deleted", "Last_Update", "Start_Reserving_Time" },
-                values: new object[] { 1, new DateTime(2020, 5, 23, 21, 10, 37, 246, DateTimeKind.Local).AddTicks(3449), new TimeSpan(0, 18, 30, 0, 0), false, null, new TimeSpan(0, 7, 30, 0, 0) });
+                values: new object[] { 1, new DateTime(2020, 5, 24, 21, 46, 3, 979, DateTimeKind.Local).AddTicks(1671), new TimeSpan(0, 18, 30, 0, 0), false, null, new TimeSpan(0, 7, 30, 0, 0) });
 
             migrationBuilder.InsertData(
                 table: "Departements",
                 columns: new[] { "Id", "Created_Date", "Departement_Name", "Is_Deleted", "Last_Update" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5305), "ACCOUNTING", false, null },
-                    { 2, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5931), "COMPLAIGN", false, null },
-                    { 3, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(5938), "REQUIREMENT", false, null }
+                    { 1, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(338), "ACCOUNTING", false, null },
+                    { 2, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(2067), "COMPLAIGN", false, null },
+                    { 3, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(2083), "REQUIREMENT", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -362,9 +363,9 @@ namespace _DB.Migrations
                 columns: new[] { "Id", "Created_Date", "Is_Deleted", "Last_Update", "State_Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(1348), false, null, "PENDING" },
-                    { 2, new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(2125), false, null, "SERVING" },
-                    { 3, new DateTime(2020, 5, 23, 21, 10, 37, 279, DateTimeKind.Local).AddTicks(2134), false, null, "DONE" }
+                    { 1, new DateTime(2020, 5, 24, 21, 46, 4, 23, DateTimeKind.Local).AddTicks(6358), false, null, "PENDING" },
+                    { 2, new DateTime(2020, 5, 24, 21, 46, 4, 23, DateTimeKind.Local).AddTicks(7243), false, null, "SERVING" },
+                    { 3, new DateTime(2020, 5, 24, 21, 46, 4, 23, DateTimeKind.Local).AddTicks(7257), false, null, "DONE" }
                 });
 
             migrationBuilder.InsertData(
@@ -372,23 +373,28 @@ namespace _DB.Migrations
                 columns: new[] { "Id", "Branch_Id", "Created_Date", "Departement_Id", "Is_Deleted", "Last_Update" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(6942), 1, false, null },
-                    { 4, 2, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8334), 1, false, null },
-                    { 2, 1, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8317), 2, false, null },
-                    { 5, 2, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8335), 2, false, null },
-                    { 3, 1, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8332), 3, false, null },
-                    { 6, 2, new DateTime(2020, 5, 23, 21, 10, 37, 248, DateTimeKind.Local).AddTicks(8337), 3, false, null }
+                    { 1, 1, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(3568), 1, false, null },
+                    { 4, 2, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(5025), 1, false, null },
+                    { 2, 1, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(5009), 2, false, null },
+                    { 5, 2, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(5027), 2, false, null },
+                    { 3, 1, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(5023), 3, false, null },
+                    { 6, 2, new DateTime(2020, 5, 24, 21, 46, 3, 981, DateTimeKind.Local).AddTicks(5028), 3, false, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "BRANCH_DEPARTEMENT_ID", "ConcurrencyStamp", "Confirmation_Code", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, 1, "c152ad99-3bb7-4cae-8a67-7f04740d18fa", null, "admin@admin.com", true, false, null, "admin@admin.com", "admin", "AQAAAAEAACcQAAAAEIcg+n/wojg8s8lcx1vh8UPP4b1NiAYNwJklUYjle6kU9dJGojsl5Ouda5pPdpN64w==", null, false, "", false, "admin" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e575", 0, 1, "12cfacd2-a7a4-45c5-879c-97dcc233aedd", null, "admin@admin.com", true, false, null, "admin@admin.com", "admin", "AQAAAAEAACcQAAAAEJVdCyhldWJ9ahO+BMRvJL/zklPv4MAITHxr9RRxo0gwOYmCYBLZdcJ7yvE6vss1sA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "BRANCH_DEPARTEMENT_ID", "ConcurrencyStamp", "Confirmation_Code", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e577", 0, 2, "fc230463-c117-45dd-b730-d4bc698d94b3", null, "employee@employee.com", true, false, null, "employee@employee.com", "employee", "AQAAAAEAACcQAAAAEPqp2p2uUCSunEkNR2anfrfSbL7Ahus6MsKbt9RdTnQUanFava/uRfaZGPFK5wQs0Q==", null, false, "", false, "employee" });
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e578", 0, 4, "eca835ab-3c46-4ea7-b7c7-e828074ace01", null, "client@client.com", true, false, null, "client@client.com", "client", "AQAAAAEAACcQAAAAEACBqO+/3r4XMYNftYNVwkKhTxpqPfvpxhFVgRolHPAQNIBHOax4bd0dlGoqi4Qw2A==", null, false, "", false, "client" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "BRANCH_DEPARTEMENT_ID", "ConcurrencyStamp", "Confirmation_Code", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a18be9c0-aa65-4af8-bd17-00bd9344e577", 0, 2, "77106c43-7dbb-47be-ac94-3afc61db31b8", null, "employee@employee.com", true, false, null, "employee@employee.com", "employee", "AQAAAAEAACcQAAAAEPutN6TghA8XlGTDYKalcFb0Zpk7Kvfw0sDzVzlzbkoHBQi2b1JB5Jbyj395W7bYNg==", null, false, "", false, "employee" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",

@@ -56,9 +56,11 @@ namespace DB.Context
             // any guid
             const string ADMIN_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
             const string EMPLOYEE_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e577";
+            const string USER_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e578";
             // any guid, but nothing is against to use the same one
             const string ROLE_ID = ADMIN_ID;
             const string ROLE_ID2 = EMPLOYEE_ID;
+            const string ROLE_ID3 = USER_ID;
             builder.Entity<AppUserRole>().HasData(new IdentityRole
             {
                 Id = ROLE_ID,
@@ -70,6 +72,12 @@ namespace DB.Context
                 Id = ROLE_ID2,
                 Name = "employee",
                 NormalizedName = "employee"
+            },
+            new IdentityRole
+            {
+                Id = ROLE_ID3,
+                Name = "client",
+                NormalizedName = "client"
             }
             );
 
@@ -95,7 +103,19 @@ namespace DB.Context
                 Email = "employee@employee.com",
                 NormalizedEmail = "employee@employee.com",
                 EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "admindemo"),
+                PasswordHash = hasher.HashPassword(null, "employeedemo"),
+                SecurityStamp = string.Empty
+            }
+            , new AppUser
+            {
+                Id = USER_ID,
+                BRANCH_DEPARTEMENT_ID = 4,
+                UserName = "client",
+                NormalizedUserName = "client",
+                Email = "client@client.com",
+                NormalizedEmail = "client@client.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "client"),
                 SecurityStamp = string.Empty
             }
             );

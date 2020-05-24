@@ -133,6 +133,7 @@ namespace _Service.BUSINESS
                 Waiting.Last_Update = DateTime.Now;
                 context.SaveChanges();
                 request_result.Data = Waiting;
+                notification_service.Notifiy_New_Serving(Waiting);
                 return request_result;
             }
             catch (Exception ex)
