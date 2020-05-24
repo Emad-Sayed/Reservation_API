@@ -56,7 +56,8 @@ namespace _Service.BUSINESS
                         request_result.Data = null;
                         return request_result;
                     }
-                    var CurrentNumber = context.Tickets.Where(t => t.Branch_Departement_Id == ticket.Branch_Departement_Id)
+                    var CurrentNumber = context.Tickets.Where(t => t.Branch_Departement_Id == ticket.Branch_Departement_Id
+                        &&t.Created_Date.Date==DateTime.Now.Date)
                         .Select(t => t.Ticket_Number).DefaultIfEmpty(0).Max();
                     ticket.Ticket_Number = CurrentNumber + 1;
                     Ticket newTicket = mapper.Map<Ticket>(ticket);

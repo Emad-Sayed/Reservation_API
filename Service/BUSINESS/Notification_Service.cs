@@ -16,13 +16,6 @@ namespace _Service.BUSINESS
         {
             ticketContext = _ticketContext;
         }
-
-        public async void Create_Ticket_Group(CREATE_NOTIFICATION_GROUP model)
-        {
-            await ticketContext.Groups.AddToGroupAsync(model.Connection_Id,model.Group_Name);
-            //await ticketContext.Clients.All.SendAsync("receiveMessage", "Group Done");
-        }
-    
         public void Notifiy_New_Ticket(Ticket ticket)
         {
             ticketContext.Clients.Group(ticket.Branch_Departement_Id+"").SendAsync("receiveMessage",ticket.Id);

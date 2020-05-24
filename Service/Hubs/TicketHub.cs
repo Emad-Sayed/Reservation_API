@@ -11,11 +11,10 @@ namespace Service.Hubs
     [Authorize(Roles = "admin,employee")]
     public class TicketHub : Hub
     {
-        public void GetConnectionId()
+        public void CreateNotificationGroup(string GroupName)
         {
-            //Clients.All.SendAsync("saveConnectionId", Context.ConnectionId);
-            Clients.Client(Context.ConnectionId).SendAsync("saveConnectionId", Context.ConnectionId);
-
+            Groups.AddToGroupAsync(Context.ConnectionId, GroupName);
+            Clients.Group(GroupName).SendAsync("receiveMessage", "Group Created");
         }
     }
 }

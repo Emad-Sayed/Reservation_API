@@ -20,13 +20,5 @@ namespace Reservation_API.Controllers.Notification
         {
             notification_service = _notification_service;
         }
-        [HttpPost("CREATE_NOTIFICATION_GROUP")]
-        public ActionResult CREATE_NOTIFICATION_GROUP([FromBody]CREATE_NOTIFICATION_GROUP model)
-        {
-            var Branch_Dept = int.Parse(User.GetClaimType("Branch_Departement"));
-            model.Group_Name = Branch_Dept.ToString();
-            notification_service.Create_Ticket_Group(model);
-            return Ok();
-        }
     }
 }

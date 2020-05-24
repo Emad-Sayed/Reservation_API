@@ -9,6 +9,5 @@ namespace _Service.INTERFACES.GENERAL
     public interface INOTIFICATION_SERVICE
     {
         void Notifiy_New_Ticket(Ticket ticket);
-        void Create_Ticket_Group(CREATE_NOTIFICATION_GROUP model);
     }
 }
