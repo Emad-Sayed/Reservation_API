@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _Service.INTERFACES.REGISTER;
+using _Service.Vw_Model.GENERAL;
 using DB.Model.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -37,6 +38,14 @@ namespace Reservation_API.Controllers.Users
             client.Type__ = "client";
             client.EmailConfirmed = false;
             var result = await service.REGISTERATION(client);
+            if (result.Status == false)
+                return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpGet]
+        public  IActionResult GET_USERS([FromBody]PAGINATION_MODEL Page)
+        {
+            var result = service.GET_USERS(Page);
             if (result.Status == false)
                 return BadRequest(result);
             return Ok(result);

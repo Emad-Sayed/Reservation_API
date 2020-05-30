@@ -1,0 +1,6 @@
+﻿CREATE VIEW  VwUsers
+AS
+SELECT Users.NormalizedEmail,B.Branch_Name_En,D.Departement_Name_En  FROM AspNetUsers as  Users
+JOIN Branch_Departements BD ON BD.Id=Users.BRANCH_DEPARTEMENT_ID
+JOIN Branches as B ON BD.Branch_Id=B.Id
+JOIN Departements as D ON BD.Departement_Id=D.Id

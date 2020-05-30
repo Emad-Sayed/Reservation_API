@@ -27,12 +27,12 @@ namespace Reservation_API.Controllers.Ticket
             _ticketContext = ticketContext;
             service = service_;
         }
-        [HttpPost]
-        public ActionResult SendMessage([FromBody]Message message)
-        {
-            _ticketContext.Clients.All.SendAsync("receiveMessage", message.body);
-            return Ok();
-        }
+        //[HttpPost]
+        //public ActionResult SendMessage([FromBody]Message message)
+        //{
+        //    _ticketContext.Clients.All.SendAsync("receiveMessage", message.body);
+        //    return Ok();
+        //}
         [HttpGet("GET_PAGINATION")]
         public ActionResult GET_TICKETS([FromBody]PAGINATION_MODEL Paging)
         {

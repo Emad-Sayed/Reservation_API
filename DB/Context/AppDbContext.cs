@@ -1,6 +1,8 @@
-﻿using _DB.Model.Branch;
+﻿using _DB.Model;
+using _DB.Model.Branch;
 using _DB.Model.CONFIGURATION;
 using _DB.Model.Ticket;
+using _DB.Model.Views.Users;
 using DB.Model.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -31,21 +33,23 @@ namespace DB.Context
                 new Branch
                 {
                     Id = 1,
-                    Branch_Name = "Cairo",
+                    Branch_Name_En = "Cairo",
+                    Branch_Name_Ar = "القاهرة",
                     Branch_Address = "108 St Number 4",
                     Branch_Phone = "101051453123"
                 },
                 new Branch
                 {
                     Id = 2,
-                    Branch_Name = "Gia",
+                    Branch_Name_En = "Giza",
+                    Branch_Name_Ar = "الجيزة",
                     Branch_Address = "445 St Number 8",
                     Branch_Phone = "112323123"
                 });
             builder.Entity<Departement>().HasData(
-                new Departement { Id = 1, Departement_Name = "ACCOUNTING" },
-                new Departement { Id = 2, Departement_Name = "COMPLAIGN" },
-                new Departement { Id = 3, Departement_Name = "REQUIREMENT" });
+                new Departement { Id = 1, Departement_Name_En = "ACCOUNTING", Departement_Name_Ar="محاسبة" },
+                new Departement { Id = 2, Departement_Name_En = "COMPLAIGN", Departement_Name_Ar = "شكوى" },
+                new Departement { Id = 3, Departement_Name_En = "REQUIREMENT", Departement_Name_Ar = "استفسار" });
             builder.Entity<BranchDepartement>().HasData(
             new BranchDepartement { Id = 1, Branch_Id = 1, Departement_Id = 1 },
             new BranchDepartement { Id = 2, Branch_Id = 1, Departement_Id = 2 },
@@ -134,6 +138,10 @@ namespace DB.Context
                 new Ticket_State { Id = 1, State_Name = "PENDING" },
                 new Ticket_State { Id = 2, State_Name = "SERVING" },
                 new Ticket_State { Id = 3, State_Name = "DONE" });
+
+
+            //VIEWS MAPPING
+            builder.Query<VwUser>().ToView("VwUsers");
         }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Departement> Departements { get; set; }
@@ -142,5 +150,9 @@ namespace DB.Context
         public DbSet<Ticket_State> Ticket_States { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Ticket_Reserve> Ticket_Reserves { get; set; }
+
+
+
+        public DbQuery<VwUser> VwUsers { get; set; }
     }
 }
