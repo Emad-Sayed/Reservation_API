@@ -42,6 +42,7 @@ namespace Reservation_API.Controllers.Users
                 return BadRequest(result);
             return Ok(result);
         }
+        [AllowAnonymous]
         [HttpGet]
         public  IActionResult GET_USERS([FromBody]PAGINATION_MODEL Page)
         {
